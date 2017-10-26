@@ -19,8 +19,6 @@ def is_palindrome(n):
 
     return True
 
-# 10*10, 10*9, 9*9, 10*8, 9*8, 8*8, 8*7... 10*8
-
 
 # brute-force it...
 def problem4():
@@ -48,6 +46,8 @@ def problem4_v2():
 
 # iterate only through palindromes
 def problem4_v3():
+
+    # try six-digit palindromes
     for i in reversed(range(100, 1000)):
         s = str(i) + str(i)[::-1]
         n = int(s)
@@ -57,6 +57,60 @@ def problem4_v3():
                 k = n / j
                 if k >= 100 and k < 1000:
                     return n
+
+    # if that didn't work, move on to five-digit palindromes
+    for i in reversed(range(100, 1000)):
+        s = str(i) + str(i)[1::-1]
+        n = int(s)
+
+        for j in reversed(range(100, 1000)):
+            if n % j == 0:
+                k = n / j
+                if k > 100 and k < 1000:
+                    print n
+
+
+# function to make palindromes using only numerical operations
+def make_palindrome(x, odd_length=False):
+
+    reversed_x = 0
+
+    if odd_length:
+        x_copy = x / 10
+    else:
+        x_copy = x
+
+    num_digits = 0
+    while x_copy > 0:
+        num_digits += 1
+        reversed_x = (reversed_x * 10) + (x_copy % 10)
+        x_copy /= 10
+
+    return x * 10**num_digits + reversed_x
+
+
+# iterate only through palindromes, without string manipulation (fastest)
+def problem4_v4():
+
+    # try six-digit palindromes
+    for i in reversed(range(100, 1000)):
+        n = make_palindrome(i, False)
+
+        for j in reversed(range(100, 1000)):
+            if n % j == 0:
+                k = n / j
+                if k >= 100 and k < 1000:
+                    return n
+
+    # if that didn't work, move on to five-digit palindromes
+    for i in reversed(range(100, 1000)):
+        n = make_palindrome(i, True)
+
+        for j in reversed(range(100, 1000)):
+            if n % j == 0:
+                k = n / j
+                if k > 100 and k < 1000:
+                    print n
 
 start = time()
 v1 = problem4()
@@ -72,3 +126,8 @@ start = time()
 v3 = problem4_v3()
 end = time()
 print "v3 retrieved answer {} in {} seconds".format(v3, end - start)
+
+start = time()
+v4 = problem4_v4()
+end = time()
+print "v4 retrieved answer {} in {} seconds".format(v4, end - start)
