@@ -66,7 +66,7 @@ def problem4_v3():
         for j in reversed(range(100, 1000)):
             if n % j == 0:
                 k = n / j
-                if k > 100 and k < 1000:
+                if k >= 100 and k < 1000:
                     print n
 
 
@@ -92,9 +92,11 @@ def make_palindrome(x, odd_length=False):
 # iterate only through palindromes, without string manipulation (fastest)
 def problem4_v4():
 
+    palindromes = []
     # try six-digit palindromes
     for i in reversed(range(100, 1000)):
         n = make_palindrome(i, False)
+        palindromes.append(n)
 
         for j in reversed(range(100, 1000)):
             if n % j == 0:
@@ -103,13 +105,12 @@ def problem4_v4():
                     return n
 
     # if that didn't work, move on to five-digit palindromes
-    for i in reversed(range(100, 1000)):
-        n = make_palindrome(i, True)
-
+    for p in palindromes:
+        n = p % 10000 / 10
         for j in reversed(range(100, 1000)):
             if n % j == 0:
                 k = n / j
-                if k > 100 and k < 1000:
+                if k >= 100 and k < 1000:
                     print n
 
 start = time()
