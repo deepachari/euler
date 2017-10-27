@@ -3,7 +3,6 @@
 # Find the sum of all the primes below two million.
 
 
-# way too damn inefficient.
 def problem10(n):
 
     # array with each index being a bit indicating whether the index is a prime or not
