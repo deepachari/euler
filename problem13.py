@@ -2,20 +2,37 @@
 
 # (numbers in problem13_data)
 
-data_file = open('problem13_data')
-data = []
-for line in data_file:
-    print type(line)
-    for c in line:
-        print "rijfdsa {}".format(c)
-    data.append([int(x) for x in line.split(' ')])
-data_file.close()
+from collections import deque
+import itertools
 
-sums = []
-num_rows = len(data)
-num_cols = len(data[0])
 
-for col in reversed(range(num_cols)):
-    s = 0
-    for row in range(num_rows):
-        s += data[row][col]
+def problem13(n):
+
+    data_file = open('problem13_data')
+
+    data = []
+    for line in data_file:
+        data.append([int(x) for x in line.strip()])
+    data_file.close()
+    num_rows = len(data)
+    num_cols = len(data[0])
+
+    final_sum = deque()
+    carryover = 0
+    for col in reversed(range(num_cols)):
+        col_sum = carryover
+        for row in range(num_rows):
+            col_sum += data[row][col]
+        final_sum.appendleft(col_sum % 10)
+        carryover = col_sum / 10
+
+    while carryover != 0:
+        final_sum.appendleft(carryover % 10)
+        carryover = carryover / 10
+
+    output_as_iter = itertools.islice(final_sum, 0, n)
+    output_as_list = [str(x) for x in output_as_iter]
+    return ''.join(output_as_list)
+
+
+print problem13(10)
