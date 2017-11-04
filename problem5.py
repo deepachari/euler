@@ -15,4 +15,4 @@ result = 40
 while not found(result):
     result += 20
 
-print result
+print(result)

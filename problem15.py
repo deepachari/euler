@@ -9,6 +9,7 @@ import itertools
 
 # both of these solutions are too inefficient - they freeze up the computer. But the answer is just 40 choose 20
 
+
 def problem15(n):
     path = [0] * (2*n)
     return len([x for x in itertools.combinations(path, n)])
@@ -24,5 +25,5 @@ def num_paths(n):
                 paths[path_index] = num_rights + 1  # move to the right
                 if step - num_rights + 1 < n:
                     paths.append(num_rights)  # add a new path which moves down
-        print step, paths
+        print(step, paths)
     return len(paths)

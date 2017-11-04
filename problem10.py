@@ -12,7 +12,7 @@ class PrimeFinder:
         self.max_num = max_num
         self.base = [True] * self.max_num
         self.base[1] = False
-        self.base[::2] = [False] * ((self.max_num + 1) / 2)
+        self.base[::2] = [False] * ((self.max_num + 1) // 2)
         self.base[2] = True
         self.get_primes()
 
@@ -26,16 +26,16 @@ class PrimeFinder:
 
     def get_primes(self):
         # iterate through all the potential primes
-        for i in xrange(3, self.max_num, 2):
+        for i in range(3, self.max_num, 2):
             if not self.base[i]:
                 continue
             self.mark_multiples(i)
 
     def mark_multiples(self, prime):
-        self.base[prime * 2::prime] = [False] * ((self.max_num - prime - 1) / prime)
+        self.base[prime * 2::prime] = [False] * ((self.max_num - prime - 1) // prime)
 
 
 pf = PrimeFinder(2000000)
 for prime in pf.primes_list:
-    print prime
-print pf.prime_sum
+    print(prime)
+print(pf.prime_sum)

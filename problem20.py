@@ -16,4 +16,4 @@ result = 0
 for digit in fact:
     result += int(digit)
 
-print result
+print(result)

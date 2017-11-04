@@ -68,4 +68,4 @@ for digit1 in digits:
 
 result += len('onethousand')
 
-print result
+print(result)

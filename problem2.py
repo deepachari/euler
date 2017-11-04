@@ -21,4 +21,4 @@ while result <= 4000000:
     if new_item % 2 == 0:
         result += new_item
 
-print result
+print(result)

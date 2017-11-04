@@ -9,9 +9,8 @@ from time import time
 def is_palindrome(n):
     s = str(n)
 
-    r = len(s) / 2
-    if len(s) % 2 == 1:
-        r += 1
+    (r, m) = divmod(len(s), 2)
+    r += m
 
     for i in range(0, r):
         if s[i] != s[i*-1 - 1]:
@@ -67,7 +66,7 @@ def problem4_v3():
             if n % j == 0:
                 k = n / j
                 if k >= 100 and k < 1000:
-                    print n
+                    print(n)
 
 
 # function to make palindromes using only numerical operations
@@ -76,15 +75,16 @@ def make_palindrome(x, odd_length=False):
     reversed_x = 0
 
     if odd_length:
-        x_copy = x / 10
+        x_copy = x // 10
     else:
         x_copy = x
 
     num_digits = 0
     while x_copy > 0:
         num_digits += 1
-        reversed_x = (reversed_x * 10) + (x_copy % 10)
-        x_copy /= 10
+        (d, r) = divmod(x_copy, 10)
+        reversed_x = (reversed_x * 10) + r
+        x_copy = d
 
     return x * 10**num_digits + reversed_x
 
@@ -111,24 +111,24 @@ def problem4_v4():
             if n % j == 0:
                 k = n / j
                 if k >= 100 and k < 1000:
-                    print n
+                    print(n)
 
 start = time()
 v1 = problem4()
 end = time()
-print "v1 retrieved answer {} in {} seconds".format(v1, end - start)
+print("v1 retrieved answer {} in {} seconds".format(v1, end - start))
 
 start = time()
 v2 = problem4_v2()
 end = time()
-print "v2 retrieved answer {} in {} seconds".format(v2, end - start)
+print("v2 retrieved answer {} in {} seconds".format(v2, end - start))
 
 start = time()
 v3 = problem4_v3()
 end = time()
-print "v3 retrieved answer {} in {} seconds".format(v3, end - start)
+print("v3 retrieved answer {} in {} seconds".format(v3, end - start))
 
 start = time()
 v4 = problem4_v4()
 end = time()
-print "v4 retrieved answer {} in {} seconds".format(v4, end - start)
+print("v4 retrieved answer {} in {} seconds".format(v4, end - start))

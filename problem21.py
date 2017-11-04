@@ -10,7 +10,7 @@
 
 def sum_divisors(x):
     result = 0
-    for i in range(1, x/2+1):
+    for i in range(1, x//2+1):
         if x % i == 0:
             result += i
     return result
@@ -39,4 +39,4 @@ def problem21(n):
     return sum(result)
 
 
-print problem21(10000)
+#print(problem21(10000))

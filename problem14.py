@@ -43,4 +43,4 @@ def generate_chain(n):
     return chain
 
 
-print problem14(1000000)
+print(problem14(1000000))

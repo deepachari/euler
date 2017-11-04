@@ -28,4 +28,4 @@ def is_prime(n):
     return True
 
 
-print problem7(10001)
+print(problem7(10001))

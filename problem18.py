@@ -35,4 +35,4 @@ for r in range(len(data) - 1):
         next_row[c+1].extend([s + right_child for s in sums_so_far])
     sums.pop(0)
 
-print max([x for sublist in sums[-1] for x in sublist])
+print(max([x for sublist in sums[-1] for x in sublist]))

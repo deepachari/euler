@@ -24,4 +24,4 @@ def problem9(n):
         squares.append(c_sq)
 
 
-print problem9(1000)
+print(problem9(1000))

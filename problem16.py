@@ -4,6 +4,7 @@
 
 from time import time
 
+
 def problem16(base, exp):
 
     product = [1]
@@ -16,31 +17,30 @@ def problem16(base, exp):
 def multiply(l, n):
     carryover = 0
 
-    for i in xrange(len(l) - 1, -1, -1):
+    for i in range(len(l) - 1, -1, -1):
         digit = l[i] * 2 + carryover
-        l[i] = digit % 10
-        carryover = digit / 10
+        (carryover, l[i]) = divmod(digit, 10)
 
     while carryover != 0:
-        l.insert(0, carryover % 10)
-        carryover /= 10
+        (carryover, r) = divmod(carryover, 10)
+        l.insert(0, r)
 
 
 def problem16_v2(base, exp):
     product = base**exp
     result = 0
     while product != 0:
-        result += product % 10
-        product /= 10
+        (product, r) = divmod(product, 10)
+        result += r
     return result
 
 
 start = time()
-print problem16(2, 1000)
+print(problem16(2, 1000))
 end = time()
-print "v1 - {} seconds".format(end - start)
+print("v1 - {} seconds".format(end - start))
 
 start = time()
-print problem16_v2(2, 1000)
+print(problem16_v2(2, 1000))
 end = time()
-print "v2 - {} seconds".format(end - start)
+print("v2 - {} seconds".format(end - start))

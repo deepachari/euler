@@ -11,7 +11,7 @@
 def problem22(filename):
 
     data = open(filename)
-    names = data.next().strip('"').split('","') #[:3]
+    names = data.readline().strip('"').split('","') #[:3]
     names.sort()
     score_sum = 0
     offset = ord('A') - 1
@@ -24,4 +24,4 @@ def problem22(filename):
     return score_sum
 
 
-print problem22('problem22_data')
+print(problem22('problem22_data'))

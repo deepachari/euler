@@ -54,14 +54,18 @@ input_list = [int(x) for x in input]
 
 
 def problem8(input_list, length):
-    result = reduce(lambda x, y: x * y, input_list[0:length-1])
+    result = 1
+    for x in input_list[0:length-1]:
+        result *= x
     max_result = result
     best_start = 0
 
     for start in range(len(input_list)-13):
 
         if result == 0:
-            result = reduce(lambda x, y: x * y, input_list[start + 1:start + length + 1])
+            result = 1
+            for x in input_list[start + 1:start + length + 1]:
+                result *= x
         else:
             result /= input_list[start]
             result *= input_list[start + length]
@@ -70,18 +74,12 @@ def problem8(input_list, length):
             max_result = result
             best_start = start
 
-    print input_list[best_start:best_start + length]
+    print(input_list[best_start:best_start + length])
     return max_result
 
 
 s = time()
-print problem8(input_list, 13)
+print(problem8(input_list, 13))
 e = time()
-print e - s
+print(e - s)
 
-# other guy's solution - found on PE forum
-s = time()
-print max([reduce(mul, input_list[i:i+13]) for i in range(len(input_list)-13)])
-e = time()
-
-print e - s

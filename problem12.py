@@ -42,17 +42,17 @@ def problem12(n):
     i = 1
     while True:
         triangle = i * (i+1) / 2
-        print triangle
+        print(triangle)
         pf = prime_factors(triangle)
         num_divisors = 2
         test = []
-        print pf
+        print(pf)
         for length in range(1, len(pf)):
             combos = list(itertools.combinations(pf, length))
             test.extend(combos)
             num_divisors += len(combos)
             if num_divisors >= n:
-                print test
+                print(test)
                 return (triangle, num_divisors)
         i += 1
 
@@ -89,4 +89,4 @@ def prime_factors(x):
     return factors
 
 
-print problem12_v2(500)
+print(problem12_v2(500))

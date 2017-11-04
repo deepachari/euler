@@ -23,16 +23,18 @@ def problem13(n):
         col_sum = carryover
         for row in range(num_rows):
             col_sum += data[row][col]
-        final_sum.appendleft(col_sum % 10)
-        carryover = col_sum / 10
+        (d, r) = divmod(col_sum, 10)
+        final_sum.appendleft(r)
+        carryover = d
 
     while carryover != 0:
-        final_sum.appendleft(carryover % 10)
-        carryover = carryover / 10
+        (d, r) = divmod(carryover, 10)
+        final_sum.appendleft(r)
+        carryover = d
 
     output_as_iter = itertools.islice(final_sum, 0, n)
     output_as_list = [str(x) for x in output_as_iter]
     return ''.join(output_as_list)
 
 
-print problem13(10)
+print(problem13(10))

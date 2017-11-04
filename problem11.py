@@ -26,8 +26,6 @@
 # What is the greatest product of four adjacent numbers in the same direction
 # (up, down, left, right, or diagonally) in the 20x20 grid?
 
-from operator import mul
-
 
 def horizontal(l, r, c, n):
     return l[r][c:c + n]
@@ -55,7 +53,9 @@ def up_diagnoal(l, r, c, n):
 
 
 def update_result(prev_max, prev_combo, new_combo):
-    result = reduce(mul, new_combo)
+    result = 1
+    for x in new_combo:
+        result *= x
 
     if result > prev_max:
         return (result, new_combo)
@@ -103,4 +103,4 @@ def problem11(n):
     return max_result, best_combo
 
 
-print problem11(4)
+print(problem11(4))

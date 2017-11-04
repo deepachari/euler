@@ -14,4 +14,4 @@ def problem6(x):
     return sum(range(x+1))**2 - sum(i**2 for i in range(x+1))
 
 
-print problem6(100)
+print(problem6(100))
